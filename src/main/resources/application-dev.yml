@@ -1,0 +1,30 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: canal
+
+eureka:
+  instance:
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://10.0.0.12:8761/eureka/
+
+canal:
+  server:
+    url:   #单机配置,local/dev/test环境使用
+    port:   #单机配置,local/dev/test环境使用
+    destination: example #环境共用参数
+    username:
+    password:
+    subscribe: #需要监控库的mysql表
+      t_user
+    refreshSeconds: 10 #单位：秒
+    zkServers: 10.0.0.15:2181,10.0.0.15:2182,10.0.0.15:2183   # zookeeper HA高可用配置,forecast/prod环境使用
+    dbname: datasou #数据库名称
